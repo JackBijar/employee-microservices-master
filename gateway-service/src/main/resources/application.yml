@@ -1,0 +1,70 @@
+server:
+    port: 8091
+    
+# config context path to "/" by setting an empty string
+    contextPath:  
+
+#zuul.routes.producer.url=http://localhost:8080
+
+#zuul.prefix=/api
+
+zuul:
+  routes:
+    employee-update:
+      path: /employee-update/**
+      serviceId: employee-update  
+
+    employee-query:
+      path: /employee-query/**
+      serviceId: employee-query  
+
+    employee-consumer:
+      path: /employee-consumer/**
+      serviceId: employee-consumer  
+    
+#eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+eureka:
+  client:
+    serviceUrl:
+      registerWithEureka: false
+
+#ribbon.eureka.enabled=true 
+
+#endpoints.restart.enabled=true
+#endpoints.shutdown.enabled=true
+#endpoints.health.enabled=true
+
+#-----------------------------------------------------------------------------OAuth Server and JWT Configuration
+
+
+
+# JACKSON
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT:  true
+ 
+# possible values: validate | update | create | create-drop
+  jpa:  
+    hibernate:
+      ddl-auto: update
+  
+  datasource: 
+    url:  jdbc:mysql://localhost:12345/sc_emp_micro
+    username: root
+    password: root
+    driver-class-name:  com.mysql.jdbc.Driver
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 600
+  route:
+    authentication:
+      path: auth      
+      refresh:  refresh
+
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG

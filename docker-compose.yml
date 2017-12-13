@@ -1,0 +1,57 @@
+version: '2'
+services:
+  employee-update:
+    image: employee-microservices-master/employee-update
+    restart: always
+    ports:
+        - "8080:8080"
+    links:
+    - discovery-service
+    
+  employee-query:
+    image: employee-microservices-master/employee-query
+    restart: always
+    ports:
+        - "8081:8081"
+    links:
+    - discovery-service
+    
+  employee-consumer:
+    image: employee-microservices-master/employee-consumer
+    restart: always
+    ports:
+        - "8082:8082"
+    links:
+    - discovery-service
+    
+  discovery-service:
+    image: employee-microservices-master/discovery-service
+    restart: always
+    ports:
+        - "8090:8090"
+    
+  gateway-service:
+    image: employee-microservices-master/gateway-service
+    restart: always
+    ports:
+        - "8091:8091"
+    
+  config-service:
+    image: employee-microservices-master/config-service
+    restart: always
+    ports:
+        - "8092:8092"
+    links:
+    - discovery-service
+        
+  hystrix-service:
+    image: employee-microservices-master/hystrix-service
+    restart: always
+    ports:
+        - "8093:8093"
+    
+  zipkin-service:
+    image: employee-microservices-master/zipkin-service
+    restart: always
+    ports:
+        - "9411:9411"

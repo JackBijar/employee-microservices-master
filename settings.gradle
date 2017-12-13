@@ -1,0 +1,8 @@
+include 'employee-update'
+include 'employee-query'
+include 'employee-consumer'
+include 'discovery-service'
+include 'gateway-service'
+include 'config-service'
+include 'hystrix-service'
+include 'zipkin-service'
