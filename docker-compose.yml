@@ -16,6 +16,14 @@ services:
     links:
     - discovery-service
     
+  employee-department:
+    image: employee-microservices-master/employee-department
+    restart: always
+    ports:
+        - "8083:8083"
+    links:
+    - discovery-service
+    
   employee-consumer:
     image: employee-microservices-master/employee-consumer
     restart: always
